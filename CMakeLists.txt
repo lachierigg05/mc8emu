@@ -3,5 +3,6 @@ project(mc8emu)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(mc8emu main.cpp
-        CPUStructures.h)
+add_executable(mc8emu chip8_main.cpp
+        CPUStructures.h
+        Chip8.cpp)

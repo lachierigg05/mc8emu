@@ -49,8 +49,14 @@ cmake_ninja_workdir = /Users/lachierigg/CLionProjects/mc8emu/cmake-build-debug/
 
 build cmake_object_order_depends_target_mc8emu: phony || .
 
-build CMakeFiles/mc8emu.dir/main.cpp.o: CXX_COMPILER__mc8emu_unscanned_Debug /Users/lachierigg/CLionProjects/mc8emu/main.cpp || cmake_object_order_depends_target_mc8emu
-  DEP_FILE = CMakeFiles/mc8emu.dir/main.cpp.o.d
+build CMakeFiles/mc8emu.dir/chip8_main.cpp.o: CXX_COMPILER__mc8emu_unscanned_Debug /Users/lachierigg/CLionProjects/mc8emu/chip8_main.cpp || cmake_object_order_depends_target_mc8emu
+  DEP_FILE = CMakeFiles/mc8emu.dir/chip8_main.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/mc8emu.dir
+  OBJECT_FILE_DIR = CMakeFiles/mc8emu.dir
+
+build CMakeFiles/mc8emu.dir/Chip8.cpp.o: CXX_COMPILER__mc8emu_unscanned_Debug /Users/lachierigg/CLionProjects/mc8emu/Chip8.cpp || cmake_object_order_depends_target_mc8emu
+  DEP_FILE = CMakeFiles/mc8emu.dir/Chip8.cpp.o.d
   FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/mc8emu.dir
   OBJECT_FILE_DIR = CMakeFiles/mc8emu.dir
@@ -63,7 +69,7 @@ build CMakeFiles/mc8emu.dir/main.cpp.o: CXX_COMPILER__mc8emu_unscanned_Debug /Us
 #############################################
 # Link the executable mc8emu
 
-build mc8emu: CXX_EXECUTABLE_LINKER__mc8emu_Debug CMakeFiles/mc8emu.dir/main.cpp.o
+build mc8emu: CXX_EXECUTABLE_LINKER__mc8emu_Debug CMakeFiles/mc8emu.dir/chip8_main.cpp.o CMakeFiles/mc8emu.dir/Chip8.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk
   OBJECT_DIR = CMakeFiles/mc8emu.dir
   POST_BUILD = :
