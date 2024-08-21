@@ -15,7 +15,7 @@ uint16_t pc; // Program counter
 uint8_t gfx[64 * 32]; // 2048 pixels contained in the graphics of Chip 8
 uint8_t delay_timer;
 uint8_t sound_timer;
-uint16_t stack;
+uint16_t stack[16];
 uint16_t sp;
 uint8_t key; // Holds the state of the keypad
 
