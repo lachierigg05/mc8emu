@@ -3,6 +3,10 @@
 // Created by Lachie Rigg on 21/8/24.
 //
 
+#include <chrono>
+#include <random>
+
+#include "FontSet.h"
 
 #ifndef MC8EMU_CHIP8_H
 #define MC8EMU_CHIP8_H
@@ -15,6 +19,13 @@ public:
 
     [[nodiscard]] bool getDrawFlag() const;
     void setDrawFlag(bool flag);
+
+    // Opcode methods
+    void OP_00E0();
+    void OP_00EE();
+    void OP_1nnn();
+    void OP_2nnn();
+    void OP_3xkk();
 
 private:
     uint16_t opcode;
@@ -29,5 +40,9 @@ private:
     uint16_t sp;
     uint8_t key; // Holds the state of the keypad
     bool drawFlag;
+
+    std::default_random_engine randGen;
+    std::uniform_int_distribution<uint8_t> randByte;
+
 };
 #endif //MC8EMU_CHIP8_H
