@@ -114,3 +114,87 @@ void chip8::OP_3xkk() {
         pc += 2;
     }
 }
+
+// OP4xkk - Skip the next instruction if V[x] != kk
+void chip8::OP_4xkk() {
+    uint8_t Vx = (opcode & 0x0F00u) >> 8u;
+    uint8_t byte = opcode & 0x00FFu;
+
+    if (V[Vx] != byte) {
+        pc += 2;
+    }
+}
+
+// OP5xy0 - Skip the next instruction if V[x] = V[y]
+void chip8::OP_5xy0() {
+    uint8_t x = (opcode & 0x0F00u) >> 8u;
+    uint8_t y = (opcode & 0x00F0u) >> 4u;
+
+    if (V[x] == V[y]) {
+        pc += 2;
+    }
+}
+
+// OP6xkk - Set V[x] = kk
+void chip8::OP_6xkk() {
+    uint8_t Vx = (opcode & 0x0F00u) >> 8u;
+    uint8_t byte = opcode & 0x00FFu;
+
+    V[Vx] = byte;
+}
+
+// OP7xkk - Set V[x] = V[x] + kk
+void chip8::OP_7xkk() {
+    uint8_t Vx = (opcode & 0x0F00u) >> 8u;
+    uint8_t byte = opcode & 0x00FFu;
+
+    V[Vx] += byte;
+}
+
+// OP8xy0 - Set V[x] = V[y]
+void chip8::OP_8xy0() {
+    uint8_t x = (opcode & 0x0F00u) >> 8u;
+    uint8_t y = (opcode & 0x00F0u) >> 4u;
+
+    V[x] = V[y];
+}
+
+// OP8xy1 - Set V[x] = V[x] | V[y]
+void chip8::OP_8xy1() {
+    uint8_t x = (opcode & 0x0F00u) >> 8u;
+    uint8_t y = (opcode & 0x00F0u) >> 4u;
+
+    V[x] |= V[y];
+}
+
+// OP8xy2 - Set V[x] = V[x] & V[y]
+void chip8::OP_8xy2() {
+    uint8_t x = (opcode & 0x0F00u) >> 8u;
+    uint8_t y = (opcode & 0x00F0u) >> 4u;
+
+    V[x] &= V[y];
+}
+
+// OP8xy3 - Set V[x] = V[x] ^ V[y]
+void chip8::OP_8xy3() {
+    uint8_t x = (opcode & 0x0F00u) >> 8u;
+    uint8_t y = (opcode & 0x00F0u) >> 4u;
+
+    V[x] ^= V[y];
+}
+
+// OP8xy4 - Set V[x] = V[x] + V[y], set VF = carry
+void chip8::OP_8xy4() {
+    uint8_t x = (opcode & 0x0F00u) >> 8u;
+    uint8_t y = (opcode & 0x00F0u) >> 4u;
+
+    uint16_t sum = V[x] + V[y];
+
+    if (sum > 255U) {
+        V[0xF] = 1;
+    } else {
+        V[0xF] = 0;
+    }
+
+    V[x] = sum & 0xFFu;
+}
